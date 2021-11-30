@@ -5,7 +5,7 @@ class Database{
     private $password;
     private $bdname;
 
-    function __construct($localhost, $username, $password,$bdname){
+    function __construct($localhost, $username, $password, $bdname){
         $this->localhost=$localhost;
         $this->username=$username;
         $this->password=$password;
@@ -18,13 +18,30 @@ class Database{
             die('Error de Conexión (' . $mysqli->connect_errno . ') '
                 . $mysqli->connect_error);
         }
-        echo 'Éxito... ' . $mysqli->host_info . "\n";
+        $consulta = $mysqli->query($query);
+        //$resultado = $consulta->fetch_assoc();
+        //var_dump($consulta);
+        //var_dump($resultado);
+
+        //return $resultado;
+        return $consulta;
+
+    }
+
+    function queryAssoc($query){
+        $mysqli = new mysqli($this->localhost, $this->username, $this->password, $this->bdname);
+
+        if($mysqli->connect_error){
+            die('Error de Conexión (' . $mysqli->connect_errno . ') '
+                . $mysqli->connect_error);
+        }
         $consulta = $mysqli->query($query);
         $resultado = $consulta->fetch_assoc();
         //var_dump($consulta);
-        var_dump($resultado);
+        //var_dump($resultado);
 
         return $resultado;
+        //return $consulta;
 
     }
 
@@ -35,9 +52,7 @@ class Database{
              die('Error de Conexión (' . $mysqli->connect_errno . ') '
                  . $mysqli->connect_error);
          }
-         echo 'Éxito... ' . $mysqli->host_info . "\n";
          $mysqli->query($query);
-
      }
 }
 

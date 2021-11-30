@@ -1,5 +1,5 @@
 <?php
-require_once "./resources/controllers/connectdb.php";
+require_once "resources/controllers/connectdb.php";
 
 class Teacher {
     private $pk=0;
@@ -33,8 +33,8 @@ class Teacher {
     }
 
     function selectStudents($bd){
-        foreach ($bd->querySelect("select * from student where classroom_key = 1") as $item){
-            $item;
+        foreach ($bd->querySelect("select * from student where classroom_key = $this->pk") as $item){
+            var_dump($item);
         }
 
     }

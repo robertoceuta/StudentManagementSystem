@@ -1,6 +1,5 @@
 <?php
-require ('resources/controllers/database.php');
-
+require_once ('resources/controllers/database.php');
 session_start();
 
 ?>
@@ -19,6 +18,24 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/pselect.js@4.0.1/dist/pselect.min.js" ></script>
 </head>
 <body>
+
+    <div class="modal fade" tabindex="-1" id="errorModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Error al introducir usuario o contraseña.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- DIV PRINCIPAL CON LOS DOS FORMULARIOS DENTRO -->
     <div class="cuerpoLogin container-fluid "  >
         <div class="row justify-content-around " style="height: 100vh">
@@ -27,7 +44,8 @@ session_start();
                     <h3>¿No estás registrado?</h3>
                     <h1 style="margin-bottom: 0.5em">¡Regístrate ahora!</h1>
                     <!-- FORMULARIO DE REGISTRO -->
-                    <form class="formulario col-10 col-md-7" >
+                    <form class="formulario col-10 col-md-7" action="resources/controllers/formManagement.php" method="post">
+                        <input type="text" hidden name="type" value="create">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="inputNombre" name="nombre">
@@ -79,21 +97,24 @@ session_start();
                     <img src="resources/img/owl-47526.svg" class="img-fluid d-flex align-self-center " alt="iconoEscuela" width="150" height="150">
                     <h3 style="margin-bottom: -2.5em">Si ya estás registrado</h3>
                     <h1 style="margin-bottom: 0.5em">Entra ahora</h1>
-                    <form class="formulario col-md-10" ">
+                    <form class="formulario col-md-10" action="resources/controllers/formManagement.php" method="post">
+                        <input type="text" hidden name="type" value="login">
                         <div class="mb-3 ">
-                            <label for="mailLog" class="form-label">Nombre de Usuario</label>
+                            <label for="mailLog" class="form-label">Email del Usuario</label>
                             <input type="email" class="form-control" id="inputMailLog" name="mailLog">
                         </div>
                         <div class="mb-3">
                             <label for="passLog" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="passLog" name="passLog">
                         </div>
-                        <button type="submit" class="btn btn-primary">Entra</button>
+                        <button type="submit" class="btn btn-primary" >Entra</button>
                     </form>
                 </div>
             <!--</div>-->
         </div>
     </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -102,5 +123,21 @@ session_start();
         var mun = document.getElementById('ps-mun');
         new Pselect().create(prov, mun);
     </script>
+    <?php
+    if(isset($_GET['error'])){
+        if($_GET['error']=='login'){
+
+            ?>
+            <script>
+                let myModal = new bootstrap.Modal(document.getElementById("errorModal"), {});
+                document.onreadystatechange = function () {
+                    myModal.show();
+                };
+            </script>
+
+            <?php
+        }
+    }
+    ?>
 </body>
 </html>
