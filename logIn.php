@@ -27,7 +27,29 @@ session_start();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Error al introducir usuario o contraseña.
+                    <?php
+                        if($_GET['error']=='login'){
+                    ?>
+                            Te has equivocado. Tira el papel y empieza de nuevo.
+                    <?php
+                        }
+                    ?>
+
+                    <?php
+                        if($_GET['error']=='regMail'){
+                    ?>
+                            El email introducido ya existe.
+                    <?php
+                        }
+                    ?>
+
+                    <?php
+                        if($_GET['error']=='badMail'){
+                    ?>
+                        El email introducido no está correctamente escrito.
+                    <?php
+                        }
+                    ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -48,7 +70,7 @@ session_start();
                         <input type="text" hidden name="type" value="create">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="inputNombre" name="nombre">
+                            <input type="text" class="form-control" id="inputNombre" name="nombre" value="<?php echo (isset($_POST['nombre']))?$_POST['nombre']:'';?>">
                             <div id="emailHelp" class="form-text">Si tu nombre es compuesto, introdúcelo completo</div>
                         </div>
                         <div class="mb-3">
@@ -78,16 +100,16 @@ session_start();
                         <div class="mb-3">
                             <label for="provincia" class="form-label">Dirección</label>
                             <select class="form-select" aria-label="Default select example" id="ps-prov" name="provincia"></select>
+                            <input type="hidden" name="provincia_oculta" id="provincia_oculta"  value=""/>
                             <label for="municipio" class="form-label"></label>
+
                             <select class="form-select" aria-label="Default select example" id="ps-mun" name="municipio"></select>
+                            <input type="hidden" name="municipio_oculto" id="municipio_oculto"  value=""/>
                             <label for="calle" class="form-label"></label>
                             <input type="text" class="form-control" id="search_input" name="direccion" placeholder="Calle Número y letra">
-                            <input type="hidden" id="latitude_input"/>
-                            <input type="hidden" id="longitude_input"/>
-
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Regístrate</button>
+                        <button type="submit" class="btn btn-primary" id="btn-registro">Regístrate</button>
                     </form>
                 </div>
            <!-- </div> -->
@@ -125,19 +147,16 @@ session_start();
     </script>
     <?php
     if(isset($_GET['error'])){
-        if($_GET['error']=='login'){
-
-            ?>
+        ?>
             <script>
                 let myModal = new bootstrap.Modal(document.getElementById("errorModal"), {});
                 document.onreadystatechange = function () {
                     myModal.show();
                 };
             </script>
-
-            <?php
-        }
+        <?php
     }
     ?>
+    <script src="resources/js/tomarValorDireccion.js"></script>
 </body>
 </html>
