@@ -19,44 +19,9 @@ session_start();
 </head>
 <body>
 
-    <div class="modal fade" tabindex="-1" id="errorModal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Error</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <?php
-                        if($_GET['error']=='login'){
-                    ?>
-                            Te has equivocado. Tira el papel y empieza de nuevo.
-                    <?php
-                        }
-                    ?>
-
-                    <?php
-                        if($_GET['error']=='regMail'){
-                    ?>
-                            El email introducido ya existe.
-                    <?php
-                        }
-                    ?>
-
-                    <?php
-                        if($_GET['error']=='badMail'){
-                    ?>
-                        El email introducido no está correctamente escrito.
-                    <?php
-                        }
-                    ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php
+        require_once "resources/tools/modalLogin.php"
+    ?>
 
     <!-- DIV PRINCIPAL CON LOS DOS FORMULARIOS DENTRO -->
     <div class="cuerpoLogin container-fluid "  >
@@ -70,32 +35,32 @@ session_start();
                         <input type="text" hidden name="type" value="create">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="inputNombre" name="nombre" value="<?php echo (isset($_POST['nombre']))?$_POST['nombre']:'';?>">
+                            <input type="text" class="form-control" id="inputNombre" required name="nombre" value="<?php echo (isset($_POST['nombre']))?$_POST['nombre']:'';?>">
                             <div id="emailHelp" class="form-text">Si tu nombre es compuesto, introdúcelo completo</div>
                         </div>
                         <div class="mb-3">
                             <label for="apellidos" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="inputApellidos" name="apellidos">
+                            <input type="text" class="form-control" id="inputApellidos" required name="apellidos">
                         </div>
-                        <div class="mb-3 ">
+                        <!--<div class="mb-3 ">
                             <label for="tipoDeUsuario" class="form-label">Tipo de Usuatio</label>
                             <select class="form-select" aria-label="Default select example" name="tipoDeUsuario">
                                 <option value="0">Selecciona uno</option>
                                 <option value="1">Alumno</option>
                                 <option value="2">Profesor</option>
-                            </select>
-                        </div>
+                            </select>-
+                        </div>-->
                         <div class="mb-3">
                             <label for="mail" class="form-label">Dirección de Email</label>
-                            <input type="email" class="form-control" id="inputMail"  name="mail">
+                            <input type="email" class="form-control" id="inputMail"  required name="mail">
                         </div>
                         <div class="mb-3">
                             <label for="pass" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="inputPass"  name="pass">
+                            <input type="password" class="form-control" id="inputPass" required name="pass">
                         </div>
                         <div class="mb-3">
                             <label for="telefono" class="form-label">Número de teléfono</label>
-                            <input type="tel" class="form-control" id="inputTelefono" name="telefono">
+                            <input type="tel" class="form-control" id="inputTelefono" required name="telefono">
                         </div>
                         <div class="mb-3">
                             <label for="provincia" class="form-label">Dirección</label>
@@ -123,11 +88,11 @@ session_start();
                         <input type="text" hidden name="type" value="login">
                         <div class="mb-3 ">
                             <label for="mailLog" class="form-label">Email del Usuario</label>
-                            <input type="email" class="form-control" id="inputMailLog" name="mailLog">
+                            <input type="email" class="form-control" id="inputMailLog" required name="mailLog">
                         </div>
                         <div class="mb-3">
                             <label for="passLog" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="passLog" name="passLog">
+                            <input type="password" class="form-control" id="passLog" required name="passLog">
                         </div>
                         <button type="submit" class="btn btn-primary" >Entra</button>
                     </form>
