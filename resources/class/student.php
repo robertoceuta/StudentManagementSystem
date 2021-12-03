@@ -20,6 +20,102 @@ class Student {
         $bd->querySelect("select * from student where primary_key = '$teacherKey'");
     }
 
+    /**
+     * @return int|mixed
+     */
+    public function getPk(): mixed
+    {
+        return $this->pk;
+    }
+
+    /**
+     * @param int|mixed $pk
+     */
+    public function setPk(mixed $pk): void
+    {
+        $this->pk = $pk;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getRegistration(): mixed
+    {
+        return $this->registration;
+    }
+
+    /**
+     * @param int|mixed $registration
+     */
+    public function setRegistration(mixed $registration): void
+    {
+        $this->registration = $registration;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getName(): mixed
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param int|mixed $name
+     */
+    public function setName(mixed $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getLastname1(): mixed
+    {
+        return $this->lastname1;
+    }
+
+    /**
+     * @param int|mixed $lastname1
+     */
+    public function setLastname1(mixed $lastname1): void
+    {
+        $this->lastname1 = $lastname1;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getLastname2(): mixed
+    {
+        return $this->lastname2;
+    }
+
+    /**
+     * @param int|mixed $lastname2
+     */
+    public function setLastname2(mixed $lastname2): void
+    {
+        $this->lastname2 = $lastname2;
+    }
+
+    /**
+     * @return int|mixed
+     */
+    public function getClassroomK(): mixed
+    {
+        return $this->classroomK;
+    }
+
+    /**
+     * @param int|mixed $classroomK
+     */
+    public function setClassroomK(mixed $classroomK): void
+    {
+        $this->classroomK = $classroomK;
+    }
+
 
 
 

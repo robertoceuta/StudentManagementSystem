@@ -18,4 +18,102 @@ class Parents{
         $this->email=$mail;
 
     }
+
+    /**
+     * @return int
+     */
+    public function getPk(): int
+    {
+        return $this->pk;
+    }
+
+    /**
+     * @param int $pk
+     */
+    public function setPk(int $pk): void
+    {
+        $this->pk = $pk;
+    }
+
+    /**
+     * @return int
+     */
+    public function getName(): int
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param int $name
+     */
+    public function setName(int $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastname1(): int
+    {
+        return $this->lastname1;
+    }
+
+    /**
+     * @param int $lastname1
+     */
+    public function setLastname1(int $lastname1): void
+    {
+        $this->lastname1 = $lastname1;
+    }
+
+    /**
+     * @return int
+     */
+    public function getLastname2(): int
+    {
+        return $this->lastname2;
+    }
+
+    /**
+     * @param int $lastname2
+     */
+    public function setLastname2(int $lastname2): void
+    {
+        $this->lastname2 = $lastname2;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTelephone(): int
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param int $telephone
+     */
+    public function setTelephone(int $telephone): void
+    {
+        $this->telephone = $telephone;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEmail(): int
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param int $email
+     */
+    public function setEmail(int $email): void
+    {
+        $this->email = $email;
+    }
+
+
 }

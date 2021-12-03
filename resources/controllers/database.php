@@ -18,7 +18,7 @@ class Database{
             die('Error de Conexión (' . $mysqli->connect_errno . ') '
                 . $mysqli->connect_error);
         }
-        $consulta = $mysqli->query($query);
+        $consulta = $mysqli->query($query)->num_rows;
         //$resultado = $consulta->fetch_assoc();
         //var_dump($consulta);
         //var_dump($resultado);

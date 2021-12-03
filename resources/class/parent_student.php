@@ -10,4 +10,54 @@ class Parent_Student {
         $this->parentK=$parentK;
         $this->studentK=$studentK;
     }
+
+    /**
+     * @return int
+     */
+    public function getPk(): int
+    {
+        return $this->pk;
+    }
+
+    /**
+     * @param int $pk
+     */
+    public function setPk(int $pk): void
+    {
+        $this->pk = $pk;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParentK(): int
+    {
+        return $this->parentK;
+    }
+
+    /**
+     * @param int $parentK
+     */
+    public function setParentK(int $parentK): void
+    {
+        $this->parentK = $parentK;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStudentK(): int
+    {
+        return $this->studentK;
+    }
+
+    /**
+     * @param int $studentK
+     */
+    public function setStudentK(int $studentK): void
+    {
+        $this->studentK = $studentK;
+    }
+
+
 }

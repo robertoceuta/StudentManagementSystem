@@ -64,7 +64,7 @@ class Propiedad {
     public function atributos() {
         $atributos = [];
         foreach(self::$columnasDB as $columna) {
-            if($columna === 'id') continue; // el continue sirbe para que si compla la condicion va a dejar de ejecutar el if
+            if($columna === 'id') continue; // el continue sirve para que si compla la condicion va a dejar de ejecutar el if
             $atributos[$columna] = $this->$columna;
         }
         return $atributos;
