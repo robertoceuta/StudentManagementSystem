@@ -42,25 +42,13 @@ session_start();
                             <label for="apellidos" class="form-label">Apellidos</label>
                             <input type="text" class="form-control" id="inputApellidos" required name="apellidos">
                         </div>
-                        <!--<div class="mb-3 ">
-                            <label for="tipoDeUsuario" class="form-label">Tipo de Usuatio</label>
+                        <div class="mb-3 ">
+                            <label for="tipoDeUsuario" class="form-label">Tipo de Usuario</label>
                             <select class="form-select" aria-label="Default select example" name="tipoDeUsuario">
                                 <option value="0">Selecciona uno</option>
                                 <option value="1">Alumno</option>
                                 <option value="2">Profesor</option>
-                            </select>-
-                        </div>-->
-                        <div class="mb-3">
-                            <label for="mail" class="form-label">Dirección de Email</label>
-                            <input type="email" class="form-control" id="inputMail"  required name="mail">
-                        </div>
-                        <div class="mb-3">
-                            <label for="pass" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="inputPass" required name="pass">
-                        </div>
-                        <div class="mb-3">
-                            <label for="telefono" class="form-label">Número de teléfono</label>
-                            <input type="tel" class="form-control" id="inputTelefono" required name="telefono">
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="provincia" class="form-label">Dirección</label>
@@ -73,6 +61,23 @@ session_start();
                             <label for="calle" class="form-label"></label>
                             <input type="text" class="form-control" id="search_input" name="direccion" placeholder="Calle Número y letra">
                         </div>
+                        <div class="mb-3">
+                            <label for="dni" class="form-label">DNI</label>
+                            <input type="text" class="form-control" id="inputDni" required name="dni">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mail" class="form-label">Dirección de Email</label>
+                            <input type="email" class="form-control" id="inputMail"  required name="mail">
+                        </div>
+
+
+
+
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Número de teléfono</label>
+                            <input type="tel" class="form-control" id="inputTelefono" required name="telefono">
+                        </div>
+
 
                         <button type="submit" class="btn btn-primary" id="btn-registro">Regístrate</button>
                     </form>
