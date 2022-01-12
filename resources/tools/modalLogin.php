@@ -29,6 +29,14 @@
                     <?php
                         }
                     ?>
+
+                    <?php
+                    if($_GET['error']=='badpass'){
+                        ?>
+                        Las contraseñas no coinciden
+                        <?php
+                    }
+                    ?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

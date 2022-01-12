@@ -31,24 +31,43 @@ require_once "formdb.php";
         }
         //MONTANDO LA LÓGICA DEL CREAR USUARIO
         elseif($_POST['type']=='create'){
-            $regMail = $_POST['mail'];
+            setcookie('regName',$_POST['nombre'],time()+120);
+            setcookie('regLastName',$_POST['apellidos'],time()+120);
+            setcookie('regTipoUser',$_POST['tipoDeUsuario'],time()+120);
+            setcookie('regDni',$_POST['dni'],time()+120);
+            setcookie('regMailCookie',$_POST['regmail'],time()+120);
+            setcookie('regTel',$_POST['telefono'],time()+120);
+            setcookie('regAdress',$_POST['direccion'],time()+120);
+            $regMail = trim($_POST['regmail']);
             //CON ESTE FILTRO COMPRUEBO SI EL MAIL TIENE LA ESTRUCTURA CORRECTA
             if(!filter_var($regMail, FILTER_VALIDATE_EMAIL)) {
                 define('URL', 'http://localhost/StudentManagementSystem/');
                 header('Location: '.URL.'login.php?error=badMail', TRUE, 302);
             //SI TIENE LA ESTRUCTURA CORRECTA COMPRUEBO SI YA ESTÁ EN LA BBDD
             }elseif($bd->queryAssoc("select * from user where email = '$regMail'")!=NULL){
+                //var_dump($_COOKIE['regName']);
                 define('URL', 'http://localhost/StudentManagementSystem/');
                 header('Location: '.URL.'login.php?error=regMail', TRUE, 302);
             //SI ESTÁ BIEN ESCRITO Y NO ESTÁ EN LA BBDD PASO A CREAR LAS VARIABLES CON EL CONTENIDO DE LOS INPUT.
             }else{
-                $name = $_POST['nombre'];
-                $lastname = $_POST['apellidos'];
-                $passReg = $_POST['pass'];
-                $telephone = $_POST['telefono'];
-                $adressReg = $_POST['direccion'].". ".$_POST['municipio_oculto'].", ".$_POST['provincia_oculta'];
-                var_dump($adressReg);
+                define('URL', 'http://localhost/StudentManagementSystem/');
+                header('Location: '.URL.'login.php?complete=reg', TRUE, 302);
             }
+        }
+        //Creando la contraseña
+        elseif($_POST['type']=='terminar'){
+            if($_POST['pass1']!=$_POST['pass2']){
+                define('URL', 'http://localhost/StudentManagementSystem/');
+                header('Location: '.URL.'login.php?error=badpass&complete=reg', TRUE, 302);
+            }else{
+                $nameNoSpace = trim($_POST['nombre']);
+                $lastnameNoSpace = trim($_POST['apellidos']);
+                $passRegNoSpace = trim($_POST['pass1']);
+                $telephoneNoSpace = trim($_POST['telefono']);
+                $dniNoSpace = trim($_POST['dni']);
+                $adressRegNoSpace = trim($_POST['direccion'].". ".$_POST['municipio_oculto'].", ".$_POST['provincia_oculta']);
+            }
+
         }
     }
 ?>

@@ -20,9 +20,15 @@ session_start();
 <body>
 
     <?php
-        require_once "resources/tools/modalLogin.php"
+        require_once "resources/tools/modalLogin.php";
+        require_once "resources/tools/modalReg.php";
     ?>
-
+    <?php var_dump($_COOKIE['regName']);
+    if(count($_COOKIE) > 2) {
+        echo "<br>Cookies are enabled/exists";
+    } else {
+        echo "<br>Cookies are disabled/not exists";
+    }?>
     <!-- DIV PRINCIPAL CON LOS DOS FORMULARIOS DENTRO -->
     <div class="cuerpoLogin container-fluid "  >
         <div class="row justify-content-around " style="height: 100vh">
@@ -35,18 +41,18 @@ session_start();
                         <input type="text" hidden name="type" value="create">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="inputNombre" required name="nombre" value="<?php echo (isset($_POST['nombre']))?$_POST['nombre']:'';?>">
+                            <input type="text" class="form-control" id="inputNombre" required name="nombre" value="<?php echo (isset($_COOKIE['regName'])) ? $_COOKIE['regName']:'';?>">
                             <div id="emailHelp" class="form-text">Si tu nombre es compuesto, introdúcelo completo</div>
                         </div>
                         <div class="mb-3">
                             <label for="apellidos" class="form-label">Apellidos</label>
-                            <input type="text" class="form-control" id="inputApellidos" required name="apellidos">
+                            <input type="text" class="form-control" id="inputApellidos" required name="apellidos" value="<?php echo (isset($_COOKIE['regLastName']))?$_COOKIE['regLastName']:'';?>">
                         </div>
                         <div class="mb-3 ">
                             <label for="tipoDeUsuario" class="form-label">Tipo de Usuario</label>
                             <select class="form-select" aria-label="Default select example" name="tipoDeUsuario">
                                 <option value="0">Selecciona uno</option>
-                                <option value="1">Alumno</option>
+                                <option value="1">Padre</option>
                                 <option value="2">Profesor</option>
                             </select>
                         </div>
@@ -59,15 +65,15 @@ session_start();
                             <select class="form-select" aria-label="Default select example" id="ps-mun" name="municipio"></select>
                             <input type="hidden" name="municipio_oculto" id="municipio_oculto"  value=""/>
                             <label for="calle" class="form-label"></label>
-                            <input type="text" class="form-control" id="search_input" name="direccion" placeholder="Calle Número y letra">
+                            <input type="text" class="form-control" id="search_input" name="direccion" placeholder="Calle Número y letra" value="<?php echo (isset($_COOKIE['regAdress']))?$_COOKIE['regAdress']:'';?>">
                         </div>
                         <div class="mb-3">
                             <label for="dni" class="form-label">DNI</label>
-                            <input type="text" class="form-control" id="inputDni" required name="dni">
+                            <input type="text" class="form-control" id="inputDni" required name="dni" value="<?php echo (isset($_COOKIE['regDni']))?$_COOKIE['regDni']:'';?>">
                         </div>
                         <div class="mb-3">
                             <label for="mail" class="form-label">Dirección de Email</label>
-                            <input type="email" class="form-control" id="inputMail"  required name="mail">
+                            <input type="email" class="form-control" id="inputMail"  required name="regmail" value="<?php echo (isset($_COOKIE['regMailCookie']))?$_COOKIE['regMailCookie']:'';?>">
                         </div>
 
 
@@ -75,7 +81,7 @@ session_start();
 
                         <div class="mb-3">
                             <label for="telefono" class="form-label">Número de teléfono</label>
-                            <input type="tel" class="form-control" id="inputTelefono" required name="telefono">
+                            <input type="tel" class="form-control" id="inputTelefono" required name="telefono" value="<?php echo (isset($_COOKIE['regTel']))?$_COOKIE['regTel']:'';?>">
                         </div>
 
 
@@ -125,6 +131,16 @@ session_start();
                 };
             </script>
         <?php
+    }
+    if(isset($_GET['complete'])){
+        ?>
+            <script>
+                let myModal = new bootstrap.Modal(document.getElementById("registroModal"), {});
+                document.onreadystatechange = function () {
+                    myModal.show();
+                };
+            </script>
+    <?php
     }
     ?>
     <script src="resources/js/tomarValorDireccion.js"></script>
