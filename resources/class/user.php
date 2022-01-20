@@ -1,5 +1,12 @@
 <?php
-require_once "./resources/controllers/connectdb.php";
+/*//Get an array of your include paths
+$include_parts = explode(PATH_SEPARATOR,get_include_path());
+//Extend the paths
+$include_parts[] = dirname(dirname(BASE_PATH)); //this is ../../
+//recompile the paths and set them
+set_include_path(implode(PATH_SEPARATOR,$include_parts));*/
+//require_once "resources/controllers/connectdb.php";
+require_once ('connectdb.php');
 class User {
     private $pk=0;
     private $teacherK=0;
@@ -7,15 +14,43 @@ class User {
     private $isAdmin=0;
     private $parentK=0;
     private $userName=0;
+    private $userMail=0;
+    private $userDni =0;
 
-    function __construct($pk, $teacherK, $userPass, $isAdmin, $parentK, $userName){
+    /*function __construct($pk, $teacherK, $userPass, $isAdmin, $parentK, $userName, $userMail, $userDni){
         $this->pk=$pk;
         $this->teacherK=$teacherK;
         $this->userPass=$userPass;
         $this->isAdmin=$isAdmin;
         $this->parentK=$parentK;
         $this->userName=$userName;
+        $this->userMail=$userMail;
+        $this->userDni=$userDni;
+
+    }*/
+
+
+    function selectUser($bd,$query){
+        $bd->querySelect($query);
     }
+
+    function queryInsertTeacherUser($pk,$user_pass, $email, $dni){
+        return "insert into user (teacher_key, user_pass, email, dni) values ('$pk','$user_pass','$email','$dni')";
+    }
+
+    function queryInsertParentUser($pk,$user_pass, $email, $dni){
+        return "insert into user (parent_key, user_pass, email, dni) values ('$pk','$user_pass','$email','$dni')";
+    }
+
+    function queryInsertPKParent($pk){
+        return "insert into user (parent_key) value ('$pk')";
+    }
+
+    function queryInsertPKTeacher($pk){
+        return "insert into user (teacher_key) value ('$pk')";
+    }
+
+
 
     /**
      * @return int

@@ -1,5 +1,4 @@
 <?php
-require_once "./resources/controllers/connectdb.php";
 
 class Parents{
     private $pk=0;
@@ -9,7 +8,7 @@ class Parents{
     private $telephone=0;
     private $email=0;
 
-    function __construct($pk, $name, $last1, $last2, $phone, $mail){
+    /*function __construct($pk, $name, $last1, $last2, $phone, $mail){
         $this->pk=$pk;
         $this->name=$name;
         $this->lastname1=$last1;
@@ -17,7 +16,18 @@ class Parents{
         $this->telephone=$phone;
         $this->email=$mail;
 
+    }*/
+
+    function queryInsertParent ($name, $lastname, $telephone){
+        return "insert into parent (name, lastname1, telephone) values ('$name', '$lastname','$telephone')";
     }
+
+    function selectLastParent (){
+        return "select primary_key from parent order by primary_key desc limit 1";
+    }
+
+
+
 
     /**
      * @return int

@@ -1,7 +1,7 @@
 <?php
-require_once ('resources/controllers/database.php');
+//define("BASE_PATH",str_replace("\\","/",dirname(__FILE__)));
+//require_once ('resources/controllers/database.php');
 session_start();
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,13 +22,15 @@ session_start();
     <?php
         require_once "resources/tools/modalLogin.php";
         require_once "resources/tools/modalReg.php";
+        require_once "resources/tools/modalRegOk.php";
     ?>
-    <?php var_dump($_COOKIE['regName']);
+    <?php /*var_dump($_COOKIE['regName']);
+    var_dump($_SERVER['SERVER_PORT']);
     if(count($_COOKIE) > 2) {
         echo "<br>Cookies are enabled/exists";
     } else {
         echo "<br>Cookies are disabled/not exists";
-    }?>
+    }*/?>
     <!-- DIV PRINCIPAL CON LOS DOS FORMULARIOS DENTRO -->
     <div class="cuerpoLogin container-fluid "  >
         <div class="row justify-content-around " style="height: 100vh">
@@ -142,7 +144,20 @@ session_start();
             </script>
     <?php
     }
+    if(isset($_GET['completeOk'])){
+        ?>
+        <script>
+            let myModal = new bootstrap.Modal(document.getElementById("registroModalOk"), {});
+            document.onreadystatechange = function () {
+                myModal.show();
+            };
+        </script>
+        <?php
+    }
     ?>
+
+
     <script src="resources/js/tomarValorDireccion.js"></script>
 </body>
+
 </html>

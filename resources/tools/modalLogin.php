@@ -17,7 +17,7 @@
                     <?php
                         if($_GET['error']=='regMail'){
                     ?>
-                            El email introducido ya existe.
+                            Datos únicos como e-mail o DNI ya existentes.
                     <?php
                         }
                     ?>
@@ -34,6 +34,12 @@
                     if($_GET['error']=='badpass'){
                         ?>
                         Las contraseñas no coinciden
+                        <?php
+                    }
+                    ?> <?php
+                    if($_GET['error']=='tipoUser'){
+                        ?>
+                        Selecciona un tipo de usuario
                         <?php
                     }
                     ?>

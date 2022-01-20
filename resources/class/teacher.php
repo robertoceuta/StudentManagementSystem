@@ -1,5 +1,4 @@
 <?php
-require_once "resources/controllers/connectdb.php";
 
 class Teacher {
     //Variables de BBDD
@@ -31,9 +30,22 @@ class Teacher {
         $this->classroomK=$classroomK;
     }
 
-    function select($bd,$query){
+    function selectTeacher($bd,$query){
         $bd->querySelect($query);
     }
+
+    function insertTeacher($bd,$query){
+        $bd->queryInsert($query);
+    }
+
+    function queryInsertTeacher($name, $lastname, $telephone,$birthday, $titulation, $numSS, $adress){
+        return "insert into teacher (name, lastname1, telephone, ss, adress, birthdate, titulation) values ('$name', '$lastname','$telephone','$numSS', '$adress','$birthday','$titulation')";
+    }
+
+    function selectLastTeacher (){
+        return "select primary_key from teacher order by primary_key desc limit 1";
+    }
+
 
     function selectStudents($bd){
         foreach ($bd->querySelect("select * from student where classroom_key = $this->pk") as $item){

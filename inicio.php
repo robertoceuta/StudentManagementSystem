@@ -9,6 +9,7 @@
     <title>Bienvenido</title>
 </head>
 <body>
+
   <!--  <div class="container-fluid ">
         <div class="row justify-content-around " >
             <div class="col-sm-4 align-self-center d-flex flex-column align-items-center justify-content-around">-->
